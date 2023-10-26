@@ -56,7 +56,9 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         darkCloud: "#000000",
+        skinDarkCloud: "#212121",
         "light-NavBlue": "#404163",
+        whiteFade: "rgba(255, 255, 255, 0.72)",
       },
       borderRadius: {
         lg: "var(--radius)",
