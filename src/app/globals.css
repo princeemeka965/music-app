@@ -35,7 +35,7 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 1.3rem;
   }
 
   .dark {
@@ -89,4 +89,20 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+}
+
+.font-Marope {
+  font-family: "__Manrope_1875da", "__Manrope_Fallback_1875da" !important;
+}
+
+.blur-view {
+  backdrop-filter: blur(37px);
+}
+
+.w-18 {
+  width: 18%;
+}
+
+.w-66 {
+  width: 64%;
 }

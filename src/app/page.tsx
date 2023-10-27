@@ -58,9 +58,7 @@ export default function Home() {
         <div className="w-full flex justify-center animate__animated animate__fadeInDown">
           <Link href={"/home"} className="lg:w-1/3 md:w-1/3 w-full">
             <Button variant={"outline"} className="shadow-lg w-full">
-              <span className="p-3" style={{ fontFamily: "__Roboto_a789c4" }}>
-                Get Started
-              </span>
+              <span className="p-3 font-Marope text-black">Get Started</span>
             </Button>
           </Link>
         </div>

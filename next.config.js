@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'api.deezer.com',
+                hostname: 'e-cdns-images.dzcdn.net',
             }
         ]
     },

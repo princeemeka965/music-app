@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function MenuBar(): React.ReactNode {
   return (
     <>
-      <div className="w-1/6 fixed h-full px-2 bg-skinDarkCloud">
+      <div className="w-18 fixed h-full px-2 bg-skinDarkCloud">
         <div className="flex w-full px-4">
           <Image
             src={"/music_corm.png"}
@@ -44,7 +44,7 @@ export default function MenuBar(): React.ReactNode {
                 />
               </div>
               <div className="flex mx-5">
-                <span className="text-base">Discovery</span>
+                <span className="text-base text-whiteFade">Discovery</span>
               </div>
             </Link>
           </div>
@@ -61,7 +61,7 @@ export default function MenuBar(): React.ReactNode {
                 />
               </div>
               <div className="flex mx-5">
-                <span className="text-base">Albums</span>
+                <span className="text-base text-whiteFade">Albums</span>
               </div>
             </Link>
           </div>

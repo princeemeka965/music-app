@@ -57,8 +57,9 @@ const config: Config = {
         },
         darkCloud: "#000000",
         skinDarkCloud: "#212121",
-        "light-NavBlue": "#404163",
+        lightNavBlue: "#404163",
         whiteFade: "rgba(255, 255, 255, 0.72)",
+        blurDark: "rgba(18, 18, 18, 0.64)",
       },
       borderRadius: {
         lg: "var(--radius)",
