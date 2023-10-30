@@ -92,17 +92,42 @@ body {
 }
 
 .font-Marope {
-  font-family: "__Manrope_1875da", "__Manrope_Fallback_1875da" !important;
+  font-family: "__Poppins_df942c", "__Poppins_Fallback_df942c" !important;
 }
 
 .blur-view {
   backdrop-filter: blur(37px);
 }
 
+.album-logo {
+  animation-name: rotate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.quantum-logo:after {
+  transform: rotate(-57deg);
+}
+
+.quantum-logo:before {
+  transform: rotate(57deg);
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .w-18 {
   width: 18%;
 }
 
+.w-17 {
+  width: 17%;
+}
+
 .w-66 {
-  width: 64%;
+  width: 65%;
 }

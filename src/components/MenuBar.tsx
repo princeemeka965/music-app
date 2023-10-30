@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function MenuBar(): React.ReactNode {
   return (
     <>
-      <div className="w-18 fixed h-full px-2 bg-skinDarkCloud">
+      <div className="w-17 fixed h-full px-4 bg-skinDarkCloud">
         <div className="flex w-full px-4">
           <Image
             src={"/music_corm.png"}
