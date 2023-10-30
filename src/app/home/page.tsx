@@ -1,3 +1,5 @@
+"use client";
+
 import AppLayout from "@/components/appLayout";
 
 export default function Home(): React.ReactNode {
