@@ -60,6 +60,7 @@ const config: Config = {
         lightNavBlue: "#404163",
         whiteFade: "rgba(255, 255, 255, 0.72)",
         blurDark: "rgba(18, 18, 18, 0.64)",
+        opaqueBlack: "rgba(0,0,0,.3)",
       },
       borderRadius: {
         lg: "var(--radius)",

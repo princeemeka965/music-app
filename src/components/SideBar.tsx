@@ -19,7 +19,7 @@ interface TracksDetails {
   album: {};
   title: string;
   contributors: {}[];
-  preview: string;
+  preview: {};
 }
 
 export default function SideBar(): React.ReactNode {
@@ -40,7 +40,7 @@ export default function SideBar(): React.ReactNode {
   ): void => {
     dispatch(SET_PLAY_TRACK(preview));
     e.currentTarget.querySelector("[data-avatar]")?.classList.add("album-logo");
-    e.currentTarget.classList.add("bg-[#616161]");
+    e.currentTarget.classList.add("bg-opaqueBlack");
 
     for (
       let i = 0;
@@ -55,7 +55,7 @@ export default function SideBar(): React.ReactNode {
         document
           .querySelectorAll("[data-avatar]")
           [i].parentElement?.parentElement?.parentElement?.classList.remove(
-            "bg-[#616161]"
+            "bg-opaqueBlack"
           );
       }
     }
@@ -130,9 +130,9 @@ export default function SideBar(): React.ReactNode {
             </div>
             {suggestedArtisteTracks?.map((tracks: any, index: number) => (
               <div
-                className="flex justify-between items-center w-full hover:bg-[#616161] cursor-pointer my-1 -ml-2 p-2"
+                className="flex justify-between items-center w-full hover:bg-opaqueBlack cursor-pointer my-1 -ml-2 p-2"
                 style={{ borderRadius: "8px" }}
-                onClick={(e) => playTrack(e, tracks?.preview, index)}
+                onClick={(e) => playTrack(e, tracks, index)}
                 key={index}
               >
                 <div className="flex space-between">

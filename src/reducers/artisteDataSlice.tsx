@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+interface TrackData {
+  album: {};
+  title: string;
+  contributors: {}[];
+  preview: string;
+}
+
 const initialState = {
   artiste: {},
   tracks: [],
-  track: "",
+  track: {} as TrackData,
 };
 
 export const artisteDataSlice = createSlice({
