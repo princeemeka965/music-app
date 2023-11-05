@@ -131,3 +131,11 @@ body {
 .w-66 {
   width: 65%;
 }
+
+progress[value] {
+  border-radius: 100px;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #ffffff;
+}

@@ -5,7 +5,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "animate.css";
 import { Provider } from "react-redux";
-import store from "@/store/store";
+import { store, persistor } from "@/store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const inter = Poppins({ weight: "200", subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default function RootLayout({
           className={inter.className}
           style={{ backgroundColor: "#000000" }}
         >
-          {children}
+          <PersistGate loading={null} persistor={persistor}>
+            {children}
+          </PersistGate>
         </body>
       </html>
     </Provider>
