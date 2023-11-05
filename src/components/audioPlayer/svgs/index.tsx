@@ -2,10 +2,10 @@ export const Play = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={20}
-      height={22}
+      width={22}
+      height={24}
       fill="none"
-      style={{ marginTop: "-3px" }}
+      style={{ marginLeft: "1.7px" }}
     >
       <path
         fill="#000"
@@ -104,62 +104,6 @@ export const Shuffle = () => {
         />
         <path d="M21.74 6.08c0-.02.01-.04.01-.05a.776.776 0 0 0-.22-.53l-2-2a.754.754 0 0 0-1.06 0c-.29.29-.29.77 0 1.06l.71.71-2.73-.01h-.02c-1.15 0-2.23.57-2.87 1.54l-6.39 9.58c-.36.54-.97.87-1.62.87h-.01l-2.55-.01a.749.749 0 1 0 0 1.5l2.55.01h.02c1.16 0 2.23-.57 2.87-1.54l6.39-9.58c.36-.54.97-.87 1.62-.87h.01l4.55.02a.753.753 0 0 0 .53-.22s0-.01.01-.01c.06-.07.12-.14.15-.23.03-.08.04-.16.05-.24Z" />
       </g>
-    </svg>
-  );
-};
-export const Search = () => {
-  return (
-    <svg
-      width="30"
-      height="30"
-      fill="none"
-      stroke="#000000"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z"></path>
-      <path d="m21 21-4.35-4.35"></path>
-    </svg>
-  );
-};
-export const SearchWhite = () => {
-  return (
-    <svg
-      width="25"
-      height="25"
-      fill="none"
-      stroke="#5f6062"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M11 3a8 8 0 1 0 0 16 8 8 0 1 0 0-16z"></path>
-      <path d="m21 21-4.35-4.35"></path>
-    </svg>
-  );
-};
-
-export const Menu = () => {
-  return (
-    <svg
-      width="28"
-      height="28"
-      fill="none"
-      stroke="#000000"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M3 12h18"></path>
-      <path d="M3 6h18"></path>
-      <path d="M3 18h18"></path>
     </svg>
   );
 };

@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import MenuBar from "./MenuBar";
 import SideBar from "./SideBar";
-import { Player } from "./audioPlayer";
+import { Player } from "../components/audioPlayer";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import Headers from "./headerBar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [id, setId] = useState<string>("1");
@@ -27,7 +28,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="w-17 flex flex-col h-screen relative">
         <MenuBar />
       </div>
-      <div className="w-66 flex">{children}</div>
+      <div className="w-66 flex flex-col">
+        <Headers />
+        {children}
+      </div>
       <div className="w-18 flex flex-col h-screen relative">
         <SideBar />
       </div>

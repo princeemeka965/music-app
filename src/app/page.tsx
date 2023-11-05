@@ -5,7 +5,7 @@ import { getArtisteDetails, getArtisteSongs } from "@/services/apiFactory";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { ArtisteStore } from "./musicStore";
+import { ArtisteStore } from "../helpers/musicStore";
 import {
   SET_ARTISTE_DATA,
   SET_ARTISTE_TRACKS,

@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import React, { useRef } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { ScrollArea } from "./ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import ArtistDisplay from "@/helpers/artistDisplay";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";

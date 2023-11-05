@@ -27,7 +27,7 @@ export const Container = styled.div<{ isfull: boolean }>`
             border-radius: 10px;
             width: 120px;
             background-color: #4D4D4D;
-            height: 4px;
+            height: 3px;
             outline: none;
             margin-right: 15px;
         }
@@ -132,7 +132,7 @@ export const Container = styled.div<{ isfull: boolean }>`
         width: 100%;
         margin: auto;
         background-color: #494A4D;
-        height: 4px;
+        height: 3px;
         outline: none;
     }
 
