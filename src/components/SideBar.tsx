@@ -22,6 +22,14 @@ interface TracksDetails {
   preview: {};
 }
 
+interface TrackPreview {
+  name: string;
+  artiste: string;
+  audio: string;
+  album_img: string;
+  id: string;
+}
+
 export default function SideBar(): React.ReactNode {
   const suggestedArtisteDetails: ArtisteDetails = useSelector(
     (state: RootState) => state.artisteData.artiste
@@ -35,10 +43,19 @@ export default function SideBar(): React.ReactNode {
 
   const playTrack = (
     e: React.MouseEvent,
-    preview: string,
+    preview: any,
     index: number
   ): void => {
-    dispatch(SET_PLAY_TRACK(preview));
+    let trackPreview: TrackPreview;
+    trackPreview = {
+      name: preview.title,
+      artiste: preview.artist.name,
+      audio: preview.preview,
+      album_img: preview.album.cover_small,
+      id: preview.id.toString(),
+    };
+
+    dispatch(SET_PLAY_TRACK(trackPreview));
     e.currentTarget.querySelector("[data-avatar]")?.classList.add("album-logo");
     e.currentTarget.classList.add("bg-opaqueBlack");
 

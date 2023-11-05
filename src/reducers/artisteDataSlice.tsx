@@ -1,16 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface TrackData {
-  album: {};
-  title: string;
-  contributors: {}[];
-  preview: string;
-}
-
 const initialState = {
   artiste: {},
   tracks: [],
-  track: {} as TrackData,
+  track: {},
+  audioPlayer: false,
 };
 
 export const artisteDataSlice = createSlice({
@@ -27,6 +21,7 @@ export const artisteDataSlice = createSlice({
 
     SET_PLAY_TRACK: (state, action) => {
       state.track = action.payload;
+      state.audioPlayer = Object.keys(action.payload).length > 0 ? true : false;
     },
   },
 });

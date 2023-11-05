@@ -9,6 +9,7 @@ import { ArtisteStore } from "./musicStore";
 import {
   SET_ARTISTE_DATA,
   SET_ARTISTE_TRACKS,
+  SET_PLAY_TRACK,
 } from "@/reducers/artisteDataSlice";
 import Link from "next/link";
 
@@ -55,6 +56,7 @@ export default function Home() {
     const artisteTracks = await getArtisteSongs(data.id);
     dispatch(SET_ARTISTE_DATA(artisteDetails.data));
     dispatch(SET_ARTISTE_TRACKS(artisteTracks.data.user.data));
+    dispatch(SET_PLAY_TRACK({}));
   };
 
   return (

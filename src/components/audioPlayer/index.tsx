@@ -11,6 +11,8 @@ import {
   Repeat,
 } from "./svgs";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 type Props = {
   id: string;
@@ -20,17 +22,13 @@ type Props = {
   windowWidth: number;
 };
 
-const musics = [
-  {
-    name: "Both of Us",
-    author: "madIRFAN",
-    genre: "Beats",
-    audio:
-      "https://cdns-preview-e.dzcdn.net/stream/c-e6f8c4803dc7cbbd66684cec89919b14-6.mp3",
-    album_img: "https://api.deezer.com/album/413093857/image",
-    id: "1",
-  },
-];
+interface TrackPreview {
+  name?: string;
+  artiste?: string;
+  audio?: string;
+  album_img?: string;
+  id?: string;
+}
 
 export const Player = ({
   id,
@@ -39,15 +37,19 @@ export const Player = ({
   isFull,
   windowWidth,
 }: Props) => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [volume, setVolume] = useState<number>(1);
-  const [duration, setDuration] = useState<number | undefined>(30);
+  const [duration, setDuration] = useState<number | undefined>(29);
   const [isRandom, setIsRandom] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const audioTag = useRef<HTMLAudioElement | null>(null);
   const progressBar = useRef<HTMLProgressElement | null>(null);
   const animationRef = useRef<number | null>(null);
+
+  const music: TrackPreview = useSelector(
+    (state: RootState) => state.artisteData.track
+  );
 
   useEffect(() => {
     if (id !== "") {
@@ -86,7 +88,10 @@ export const Player = ({
             clearInterval(interval);
 
             if (audioTag.current?.currentTime === audioTag.current?.duration) {
-              isRandom ? skipRandom() : skipForward();
+              setIsPlaying(false);
+              if (audioTag.current !== null && audioTag.current !== undefined) {
+                audioTag.current.currentTime = 0;
+              }
             }
           }
         }, 1100);
@@ -185,38 +190,31 @@ export const Player = ({
           )}
           <div className="flex w-full py-2 px-6 mb-3 justify-between">
             <div className="musicDiv">
-              {musics.map((music) =>
-                id === music.id ? (
-                  <div
-                    onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
-                    className="music gap-2"
-                    key={music.id}
-                  >
-                    {!isFull ? (
-                      <>
-                        <Image
-                          src={music.album_img}
-                          alt="album"
-                          width={65}
-                          height={65}
-                          style={{ borderRadius: "12px" }}
-                        />
-                        <div className="flex flex-col">
-                          <p className="font-semibold text-lg">{music.name}</p>
-                          <p className="text-sm text-whiteFade">
-                            {music.author}
-                          </p>
-                        </div>
-                      </>
-                    ) : (
-                      ""
-                    )}
-                    <audio src={music.audio} ref={audioTag} />
-                  </div>
+              <div
+                onClick={() => setIsFull(windowWidth <= 820 && !isFull)}
+                className="music gap-2"
+                key={music?.id}
+              >
+                {!isFull ? (
+                  <>
+                    <Image
+                      src={music.album_img || "/albums.png"}
+                      alt="album"
+                      width={65}
+                      height={65}
+                      style={{ borderRadius: "50%" }}
+                      className={isPlaying ? "album-logo" : undefined}
+                    />
+                    <div className="flex flex-col">
+                      <p className="font-semibold text-lg">{music.name}</p>
+                      <p className="text-sm text-whiteFade">{music.artiste}</p>
+                    </div>
+                  </>
                 ) : (
                   ""
-                )
-              )}
+                )}
+                <audio src={music.audio} ref={audioTag} />
+              </div>
             </div>
 
             <div className="flex flex-col justify-center">
