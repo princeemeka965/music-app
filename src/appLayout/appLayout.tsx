@@ -28,9 +28,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <div className="w-17 flex flex-col h-screen relative">
         <MenuBar />
       </div>
-      <div className="w-66 flex flex-col">
-        <Headers />
-        {children}
+      <div className="w-66 flex">
+        <div className="w-full flex flex-col py-5 px-5">
+          <Headers />
+          {children}
+        </div>
       </div>
       <div className="w-18 flex flex-col h-screen relative">
         <SideBar />

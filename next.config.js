@@ -9,6 +9,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'api.deezer.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.genius.com'
             }
         ]
     },

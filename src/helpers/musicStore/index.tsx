@@ -1,6 +1,13 @@
 export const ArtisteStore = (): any => {
   return [
     {
+      id: "9729060",
+      name: "2Baba",
+      slug: "2Baba",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/f7f9a55fb35f2ebc56617df175dd1fa5/250x250-000000-80-0-0.jpg",
+    },
+    {
       id: "8292430",
       name: "Ada Ehi",
       slug: "adaehi",
@@ -36,6 +43,20 @@ export const ArtisteStore = (): any => {
         "https://e-cdns-images.dzcdn.net/images/artist/c1249c5dd268a9688fb139a606d55c01/250x250-000000-80-0-0.jpg",
     },
     {
+      id: "298985",
+      name: "Bracket",
+      slug: "bracket",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/59504e788df9f92fdddeb1b96a3a3dc7/250x250-000000-80-0-0.jpg",
+    },
+    {
+      id: "2965981",
+      name: "Brymo",
+      slug: "brymo",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/d2324bef496362f5a7905da589eb3bb2/250x250-000000-80-0-0.jpg",
+    },
+    {
       id: "4338602",
       name: "Burna Boy",
       slug: "burnaboy",
@@ -57,11 +78,39 @@ export const ArtisteStore = (): any => {
         "https://e-cdns-images.dzcdn.net/images/artist/e139e9782875805dd40621cb43aa0efc/250x250-000000-80-0-0.jpg",
     },
     {
-      id: "9729060",
-      name: "2Baba",
-      slug: "2Baba",
+      id: "10753698",
+      name: "Chike",
+      slug: "chike",
       photo:
-        "https://e-cdns-images.dzcdn.net/images/artist/f7f9a55fb35f2ebc56617df175dd1fa5/250x250-000000-80-0-0.jpg",
+        "https://e-cdns-images.dzcdn.net/images/artist/888029952c1d4f821cb161daaeffa623/250x250-000000-80-0-0.jpg",
+    },
+    {
+      id: "903536",
+      name: "CKay",
+      slug: "ckay",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/032e7d03d75414baf8b73411e6679a13/250x250-000000-80-0-0.jpg",
+    },
+    {
+      id: "84958462",
+      name: "Crayon",
+      slug: "crayon",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/b0b9d3fa14f1cf66b8c1f5fc77b7cf98/250x250-000000-80-0-0.jpg",
+    },
+    {
+      id: "125372",
+      name: "Davido",
+      slug: "davido",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/712f71a2a10dc7c9e0f32dde114ed6b6/250x250-000000-80-0-0.jpg",
+    },
+    {
+      id: "338394",
+      name: "Frank Edwards",
+      slug: "frankedwards",
+      photo:
+        "https://e-cdns-images.dzcdn.net/images/artist/72fdd4b9c3d19843e9f65742eaba8952/250x250-000000-80-0-0.jpg",
     },
   ];
 };
