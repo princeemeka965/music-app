@@ -63,6 +63,7 @@ const config: Config = {
         blurDark: "rgba(18, 18, 18, 0.64)",
         opaqueBlack: "rgba(0,0,0,.3)",
         navGreen: "#1DB954",
+        navGreenOpaque: "rgba(29, 185, 84, 0.5)",
       },
       borderRadius: {
         lg: "var(--radius)",

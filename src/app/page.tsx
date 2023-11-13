@@ -1,17 +1,45 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { getArtisteDetails, getArtisteSongs } from "@/services/apiFactory";
+import {
+  getArtisteDetails,
+  getArtisteSongs,
+  signUp,
+} from "@/services/apiFactory";
 import { useEffect } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { ArtisteStore } from "../helpers/musicStore";
+import { ArtisteStore } from "../helpers/artistStore";
 import {
   SET_ARTISTE_DATA,
   SET_ARTISTE_TRACKS,
   SET_PLAY_TRACK,
 } from "@/reducers/artisteDataSlice";
 import Link from "next/link";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  loginSchemaValidation,
+  signUpSchemaValidation,
+} from "@/helpers/validations/formValidation";
+import * as z from "zod";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ArtisteList {
   id: string;
@@ -23,6 +51,7 @@ let artisteList: ArtisteList[];
 
 export default function Home() {
   const dispatch = useDispatch();
+  const toast = useToast();
 
   useEffect(() => {
     artisteList = ArtisteStore();
@@ -59,6 +88,50 @@ export default function Home() {
     dispatch(SET_PLAY_TRACK({}));
   };
 
+  /**
+   * AUTHENTICATION BLOCK
+   * Sign Up
+   */
+  const signUpSchema = signUpSchemaValidation();
+
+  const formSignUp = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      username: "",
+      password: "",
+    },
+  });
+
+  function onSignUp(values: z.infer<typeof signUpSchema>) {
+    // send to the backend
+    signUp(values).then((response: any) => {
+      toast.toast({
+        description: response.data.message,
+      });
+    });
+  }
+
+  /**
+   * AUTHENTICATION BLOCK
+   * Login
+   */
+  const loginSchema = loginSchemaValidation();
+
+  const formLogin = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
+
+  function onLogin(values: z.infer<typeof loginSchema>) {
+    // Do something with the form values.
+    console.log(values);
+  }
+
   return (
     <>
       <div
@@ -71,7 +144,7 @@ export default function Home() {
         priority
         quality={100}
         fill
-        sizes="100vw"
+        sizes="100%"
         style={{
           objectFit: "cover",
         }}
@@ -111,12 +184,222 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex justify-center animate__animated animate__fadeInDown">
-          <Link href="/home" className="lg:w-1/3 md:w-1/3 w-full">
-            <Button variant={"outline"} className="shadow-lg w-full">
-              <span className="p-3 text-black font-semibold">Get Started</span>
-            </Button>
-          </Link>
+        <div className="w-full my-5 flex justify-center">
+          <div className="w-1/3 flex flex-col my-5 gap-4 animate__animated animate__fadeInDown">
+            <div className="w-full flex justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant={"outline"} className="shadow-lg w-full">
+                    <span className="p-3 text-black font-semibold">Login</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle className="text-black font-black text-center">
+                      Login
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <Form {...formLogin}>
+                      <form
+                        onSubmit={formLogin.handleSubmit(onLogin)}
+                        className="space-y-8"
+                      >
+                        <FormField
+                          control={formLogin.control}
+                          name="username"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Username
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter Username"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={formLogin.control}
+                          name="password"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Password
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter Password"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  type="password"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <Button
+                          type="submit"
+                          variant={"outline"}
+                          className="text-white w-full font-bold shadow-lg bg-navGreen hover:bg-navGreenOpaque hover:text-white"
+                        >
+                          Submit
+                        </Button>
+                      </form>
+                    </Form>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <div className="w-full flex justify-center gap-3">
+              <div
+                className="border flex flex-grow my-3"
+                style={{ height: 1 }}
+              />
+              <div className="flex flex-col">
+                <p className="text-base font-semibold text-gray-400">OR</p>
+              </div>
+              <div
+                className="border flex flex-grow my-3"
+                style={{ height: 1 }}
+              />
+            </div>
+
+            <div className="w-full flex justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className="shadow-lg w-full bg-transparent hover:bg-transparent"
+                  >
+                    <span className="p-3 text-white font-semibold">
+                      Sign Up
+                    </span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle className="text-black font-black text-center">
+                      Sign up
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-2 py-4">
+                    <Form {...formSignUp}>
+                      <form
+                        onSubmit={formSignUp.handleSubmit(onSignUp)}
+                        className="space-y-8"
+                      >
+                        <FormField
+                          control={formSignUp.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter Firstname and Surname"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={formSignUp.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Email
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter email address"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  type="email"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={formSignUp.control}
+                          name="username"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Username
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter Username"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={formSignUp.control}
+                          name="password"
+                          render={({ field }) => (
+                            <FormItem className="flex flex-col gap-1">
+                              <FormLabel className="text-black px-2 font-semibold">
+                                Password
+                              </FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter Password"
+                                  className="text-black"
+                                  autoComplete="off"
+                                  type="password"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="font-semibold px-2" />
+                            </FormItem>
+                          )}
+                        />
+
+                        <Button
+                          type="submit"
+                          variant={"outline"}
+                          className="text-white w-full font-bold shadow-lg bg-navGreen hover:bg-navGreenOpaque hover:text-white"
+                        >
+                          Submit
+                        </Button>
+                      </form>
+                    </Form>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
         </div>
       </div>
     </>

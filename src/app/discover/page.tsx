@@ -1,7 +1,7 @@
 "use client";
 
 import AppLayout from "@/appLayout/appLayout";
-import { ArtisteStore } from "@/helpers/musicStore";
+import { ArtisteStore } from "@/helpers/artistStore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 

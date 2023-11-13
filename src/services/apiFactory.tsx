@@ -9,7 +9,7 @@ export const AxiosDeezer = axios.create({
 });
 
 export const AxiosDEV = axios.create({
-  baseURL: "http://127.0.0.1:7000",
+  baseURL: "http://127.0.0.1:5000",
 });
 
 export const AxiosBillBoard = axios.create({
@@ -19,6 +19,11 @@ export const AxiosBillBoard = axios.create({
     "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
   },
 });
+
+export const signUp = (payload: {}): any => {
+  let url: string = `/authenticate/createAccount`;
+  return AxiosDEV.post(url, payload);
+};
 
 export const getArtisteSongs = (slug: string): any => {
   let url: string = `/artiste/tracks/${slug}`;

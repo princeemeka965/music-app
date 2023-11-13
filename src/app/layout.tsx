@@ -1,12 +1,12 @@
 "use client";
 
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import "animate.css";
 import { Provider } from "react-redux";
 import { store, persistor } from "@/store/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Poppins({ weight: "200", subsets: ["latin"] });
 
@@ -31,6 +31,7 @@ export default function RootLayout({
           <PersistGate loading={null} persistor={persistor}>
             {children}
           </PersistGate>
+          <Toaster />
         </body>
       </html>
     </Provider>

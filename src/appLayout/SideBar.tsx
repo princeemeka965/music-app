@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import ArtistDisplay from "@/helpers/artistDisplay";
+import ArtistDisplay from "@/helpers/artistNames";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useDispatch } from "react-redux";
