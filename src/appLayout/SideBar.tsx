@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import ArtistDisplay from "@/helpers/artistNames";
+import { ArtistNames, shortestName } from "@/helpers/nameHandler";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useDispatch } from "react-redux";
@@ -30,6 +30,11 @@ interface TrackPreview {
   id: string;
 }
 
+interface UserData {
+  id?: string;
+  name?: string;
+}
+
 export default function SideBar(): React.ReactNode {
   const suggestedArtisteDetails: ArtisteDetails = useSelector(
     (state: RootState) => state.artisteData.artiste
@@ -37,6 +42,10 @@ export default function SideBar(): React.ReactNode {
 
   const suggestedArtisteTracks: TracksDetails[] = useSelector(
     (state: RootState) => state.artisteData.tracks
+  );
+
+  const userInfo: UserData = useSelector(
+    (state: RootState) => state.userData.user
   );
 
   const dispatch = useDispatch();
@@ -88,7 +97,7 @@ export default function SideBar(): React.ReactNode {
               <AvatarFallback>JR</AvatarFallback>
             </Avatar>
             <div className="flex mx-3 flex-col justify-center">
-              <span className="text-base">James Rodriguez</span>
+              <span className="text-base">{shortestName(userInfo?.name)}</span>
               <div className="w-full flex">
                 <span className="text-xs text-whiteFade my-1">Premium</span>
                 <div className="flex flex-col justify-center">
@@ -163,7 +172,7 @@ export default function SideBar(): React.ReactNode {
                     <span className="text-sm">{tracks.title}</span>
                     <div className="w-full flex">
                       <span className="text-xs text-whiteFade my-1">
-                        {ArtistDisplay(tracks?.contributors)}
+                        {ArtistNames(tracks?.contributors)}
                       </span>
                     </div>
                   </div>

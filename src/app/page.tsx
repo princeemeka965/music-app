@@ -40,6 +40,8 @@ import {
 } from "@/helpers/validations/formValidation";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
+import { SET_USER_DATA } from "@/reducers/userDataSlice";
+import { useRouter } from "next/navigation";
 
 interface ArtisteList {
   id: string;
@@ -52,6 +54,7 @@ let artisteList: ArtisteList[];
 export default function Home() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const router = useRouter();
 
   useEffect(() => {
     artisteList = ArtisteStore();
@@ -110,6 +113,13 @@ export default function Home() {
       toast.toast({
         description: response.data.message,
       });
+      // Set user's data state
+      const user_info = {
+        id: response.data.user.id,
+        name: response.data.user.name,
+      };
+      dispatch(SET_USER_DATA(user_info));
+      router.push("/home");
     });
   }
 

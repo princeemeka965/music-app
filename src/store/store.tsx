@@ -3,6 +3,7 @@ import artisteDataSlice from "@/reducers/artisteDataSlice";
 import storage from "./storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
+import userDataSlice from "@/reducers/userDataSlice";
 
 const persistConfig = {
   key: "root",
@@ -14,9 +15,12 @@ const persistedArtisteDataReducer = persistReducer(
   artisteDataSlice
 );
 
+const persistedUserDataReducer = persistReducer(persistConfig, userDataSlice);
+
 export const store = configureStore({
   reducer: {
     artisteData: persistedArtisteDataReducer,
+    userData: persistedUserDataReducer,
   },
   middleware: [thunk],
 });
