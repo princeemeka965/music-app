@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   getArtisteDetails,
   getArtisteSongs,
+  loginAccount,
   signUp,
 } from "@/services/apiFactory";
 import { useEffect } from "react";
@@ -139,7 +140,25 @@ export default function Home() {
 
   function onLogin(values: z.infer<typeof loginSchema>) {
     // Do something with the form values.
-    console.log(values);
+    loginAccount(values)
+      .then((response: any) => {
+        toast.toast({
+          description: response.data.message,
+        });
+        // Set user's data state
+        const user_info = {
+          id: response.data.user.id,
+          name: response.data.user.name,
+        };
+        dispatch(SET_USER_DATA(user_info));
+        router.push("/home");
+      })
+      .catch((error: any) => {
+        toast.toast({
+          variant: "destructive",
+          description: error.response.data.message,
+        });
+      });
   }
 
   return (
