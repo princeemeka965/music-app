@@ -22,3 +22,7 @@ export const AxiosBillBoard = axios.create({
     "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
   },
 });
+
+export const AxiosAPIDeezer = axios.create({
+  baseURL: "https://api.deezer.com",
+});

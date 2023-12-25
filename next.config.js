@@ -12,6 +12,10 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
+                hostname: 'images.rapgenius.com'
+            },
+            {
+                protocol: 'https',
                 hostname: 'images.genius.com'
             }
         ]

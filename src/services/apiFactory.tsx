@@ -1,4 +1,9 @@
-import { AxiosBillBoard, AxiosDEV, AxiosDeezer } from "./apiHeaders";
+import {
+  AxiosAPIDeezer,
+  AxiosBillBoard,
+  AxiosDEV,
+  AxiosDeezer,
+} from "./apiHeaders";
 
 export const signUp = (payload: {}): any => {
   let url: string = `/authenticate/createAccount`;
@@ -11,8 +16,8 @@ export const loginAccount = (payload: {}): any => {
 };
 
 export const getArtisteSongs = (slug: string): any => {
-  let url: string = `/artiste/tracks/${slug}`;
-  return AxiosDEV.get(url);
+  let url: string = `/artist/${slug}/top?limit=50`;
+  return AxiosAPIDeezer.get(url);
 };
 
 export const getArtisteDetails = (id: string): any => {
